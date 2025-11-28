@@ -1,0 +1,129 @@
+
+/*
+
+*/
+/* -------------------------------------------------
+   1. Base (mobile-first) – < 500 px
+   ------------------------------------------------- */
+.choice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;   /* spread items evenly */
+  row-gap: 20px;                    /* 20 px between rows */
+  padding: 0;
+  margin: 0;
+}
+
+/* each choice */
+.choice-grid > div {
+  flex: 0 0 49%;                    /* 2-column on tiny screens */
+  box-sizing: border-box;
+  background: #f4f4f4;
+  border: 1px solid #dcdcdc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;                        /* space between picture & checkbox */
+}
+
+/* picture – shrink to fit, keep ratio */
+.choice-grid > div > img:first-child {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* checkbox image (unchanged) */
+.choice-grid .checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+/* -------------------------------------------------
+   2. ≥ 500 px – 3-column grid
+   ------------------------------------------------- */
+@media (min-width: 500px) {
+  .choice-grid > div {
+    flex: 0 0 32.5%;                /* 3-column */
+  }
+
+  /* keep exactly 3 items per row – invisible filler */
+  .choice-grid::after {
+    content: '';
+    flex: 0 0 32.5%;
+  }
+}
+
+/* -------------------------------------------------
+   3. < 700 px – 95 % page width + hide yellow circles
+   ------------------------------------------------- */
+@media (max-width: 699px) {
+  article {
+    width: 95% !important;
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  /* yellow circles are the <span> elements inside header > div */
+  header div span {
+    display: none !important;
+  }
+}
+
+/* -------------------------------------------------
+   4. ≥ 700 px – original 700 px layout (provided-style.css)
+   ------------------------------------------------- */
+@media (min-width: 700px) {
+  article {
+    width: 700px !important;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* make sure the circles are visible again */
+  header div span {
+    display: flex !important;
+  }
+}
+
+/* -------------------------------------------------
+   6. Quiz Result Styles
+   ------------------------------------------------- */
+#quiz-result .result-button {
+    background-color: #cecece;
+    padding: 10px;
+    text-align: center;
+    cursor: default;
+    transition: background-color 0.3s;
+}
+
+#quiz-result .result-button:hover {
+    background-color: #e0e0e0;
+}
+
+#quiz-result .result-button h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+#quiz-result .result-button p {
+    margin: 0;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+#quiz-result button#restart-quiz {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* -------------------------------------------------
+   5. Viewport meta tag – add to <head> of index.html
+   ------------------------------------------------- */
+/* <meta name="viewport" content="width=device-width, initial-scale=1"> */
